@@ -24,7 +24,10 @@ class ParseDateController extends Controller
         $events = $crawler->filter('div.event')->each(function (Crawler $node) {
             return $node->text();
         });
-        dd($events);
+        $pattern = '/(\d+)\s*(года|лет|год)?$/';
+        $replacement = '';
+        $new_str = preg_replace($pattern, $replacement, $events[0]);
+        dd($new_str);
 
     }
 }
