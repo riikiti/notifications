@@ -9,7 +9,8 @@
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "symfony/dom-crawler": "^7.0"
+        "symfony/dom-crawler": "^7.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
