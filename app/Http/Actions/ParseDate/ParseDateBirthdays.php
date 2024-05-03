@@ -10,19 +10,16 @@ use Symfony\Component\DomCrawler\Crawler;
 class ParseDateBirthdays extends ParseData
 {
 
-    public function parse(): JsonResponse
+    public function parse(): string
     {
         $birthdatys = $this->crewlerParse('#p2>p>b>big');
         $birthdatys_date = $this->crewlerParse('#p2>p>small');
         $role = $this->crewlerParse('#p2 > p:last-of-type');
+        $message = "<b>Дни рождения сегодня</b>\n";
         for ($i = 0; $i < count($birthdatys); $i++) {
-            $mergedArray[] = [
-                'name' => $birthdatys[$i],
-                'date' => preg_replace('/[\(\)]/', '', $birthdatys_date[$i]),
-                'role' => $role[$i]
-            ];
+            $message .= "- <b>$birthdatys[$i]</b> $birthdatys_date[$i] \n $role[$i] \n";
         }
-        return response()->json($mergedArray);
+        return $message;
     }
 
 }

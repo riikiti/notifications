@@ -9,10 +9,10 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class ParseDateNames extends ParseData
 {
-    public function parse(): JsonResponse
+    public function parse(): array
     {
         $names = $this->crewlerParse('#bloks');
-        return response()->json($names);
+        return $names;
     }
 
 }

@@ -9,9 +9,9 @@ use Symfony\Component\DomCrawler\Crawler;
 class ParseDateHolidays extends ParseData
 {
 
-    public function parse(): JsonResponse
+    public function parse(): array
     {
         $holidays = $this->crewlerParse('h4');
-        return response()->json( $holidays );
+        return  $holidays;
     }
 }

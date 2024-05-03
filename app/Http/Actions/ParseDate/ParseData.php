@@ -29,6 +29,6 @@ abstract class ParseData
         });
     }
 
-    abstract public function parse(): JsonResponse;
+    abstract public function parse();
 
 }

@@ -11,16 +11,16 @@ class ParseDateEvents extends ParseData
 {
 
 
-    public function parse(): JsonResponse
+    public function parse(): string
     {
         $events = $this->crewlerParse('#dv2');
         $years = $this->crewlerParse('#dv1');
-        $mergedArray = [];
-
+        $message = "<b>Исторические события сегодня</b>\n";
         for ($i = 0; $i < count($events); $i++) {
-            $mergedArray[] = ['event' => $events[$i], 'date' => $years[$i]];
+            $message .= "- $years[$i] $events[$i]\n";
         }
-        return response()->json($mergedArray);
+
+        return $message;
     }
 
 
