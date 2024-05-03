@@ -38,7 +38,7 @@ class GenerateImageAction
         $image_name = 'image_' . time() . '.png';
 
         Storage::disk('public')->put($image_name, $image_data);
-        return $this->appUrl . '/storage/' . $image_name;
+        return $image_name;
     }
 
     public function getModel()

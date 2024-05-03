@@ -2,16 +2,20 @@
 
 namespace App\Http\Actions\ParseDate;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Http;
-use Symfony\Component\DomCrawler\Crawler;
+use App\Models\Holidays;
+use Carbon\Carbon;
+
 
 class ParseDateHolidays extends ParseData
 {
 
-    public function parse(): array
+    public function parse()
     {
         $holidays = $this->crewlerParse('h4');
-        return  $holidays;
+        $date = Carbon::today()->hour(8);
+        foreach ($holidays as $holiday) {
+            Holidays::create(['name' => $holiday, 'publish_in' => $date]);
+            $date->addMinutes(30);
+        }
     }
 }

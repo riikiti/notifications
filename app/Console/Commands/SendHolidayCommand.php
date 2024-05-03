@@ -2,6 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Actions\GenerateImage\GenerateImageAction;
+use App\Http\Actions\ParseDate\ParseDateHolidays;
+use App\Models\Holidays;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use SergiX44\Nutgram\Nutgram;
@@ -22,24 +26,23 @@ class SendHolidayCommand extends Command
         $this->chat = intval(env('TELEGRAM_CHANNEL'));
     }
 
-    public function handle()
+    public function handle(GenerateImageAction $action)
     {
-        $filePath = storage_path('app/public/image_1714568515.png');
-        $caption = 'hi every one';
-        try {
+        $records = Holidays::whereDate('publish_in', Carbon::today())->where('publish_in', '<=', now())->get();
+        foreach ($records as $record) {
+            $filePath = storage_path('app/public/' . $action->generateImage($record->name));
             $photo = fopen($filePath, 'r+');
-            // $this->bot->sendMessage('Hi!', intval(env('TELEGRAM_CHANNEL')));
             $this->bot->sendPhoto(
                 photo: InputFile::make($photo),
                 chat_id: $this->chat,
-                caption: $caption,
+                caption: $record->name,
             );
+            Log::channel('telegram')->info('Отправлен пост с сообщением ' . $record->name);
+            $record->delete();
             $this->bot->run();
-            Log::channel('telegram')->info('Отправлен пост с сообщением ' . $caption);
-        } catch (\Exception $err) {
-            Log::channel('telegram')->info($err->getMessage());
+
         }
-        Log::channel('telegram')->info("Command finished.");
+
         return Command::SUCCESS;
     }
 }
