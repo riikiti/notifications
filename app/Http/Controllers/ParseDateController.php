@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
 use Symfony\Component\DomCrawler\Crawler;
 
 class ParseDateController extends Controller
@@ -20,7 +22,17 @@ class ParseDateController extends Controller
 
     public function index(GenerateImageAction $action,ParseDateHolidays $event)
     {
-        return $event->parse();
+        $bot = new Nutgram(env('TELEGRAM_TOKEN'));
+        $photo = fopen('storage/image_1714568515.png', 'r+'); // open the file // open the file
+
+        //$bot->sendMessage('Hi!', intval(env('TELEGRAM_CHANNEL')));
+        $bot->sendPhoto(
+            photo: InputFile::make($photo), // create the input file
+            chat_id: intval(env('TELEGRAM_CHANNEL')),
+            caption: 'hi2',
+        );
+        $bot->run();
+        //return $event->parse();
         //return $action->generateImage('Всемирный день котов');
     }
 
