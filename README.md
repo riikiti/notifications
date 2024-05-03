@@ -6,7 +6,7 @@
 - выводит события произошедние в этот день
 ## От куда берет данные?
 - парсит праздники с сайта https://kakoyprazdnik.com/
-- парсит события с стайта https://www.calend.ru/events/
+- парсит события с стайта https://kakoyprazdnik.com/
 - генерирует картинки используя ии https://fusionbrain.ai/
 ## Вот вам котик сделанный нейросетью
   ![plot](./public/my_image.png)
