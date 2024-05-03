@@ -8,3 +8,5 @@
 - парсит праздники с сайта https://kakoyprazdnik.com/
 - парсит события с стайта https://www.calend.ru/events/
 - генерирует картинки используя ии https://fusionbrain.ai/
+## Вот вам котик сделанный нейросетью
+  ![plot](./public/my_image.png)
