@@ -9,10 +9,11 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class ParseDateNames extends ParseData
 {
-    public function parse(): array
+    public function parse(): string
     {
         $names = $this->crewlerParse('#bloks');
-        return $names;
+        $message = "<b>Именины сегодня</b>\n" . $names[0];
+        return $message;
     }
 
 }

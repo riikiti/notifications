@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Http\Actions\ParseDate\ParseDateNames;
 use Illuminate\Console\Command;
 use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 
 class SendNamesCommand extends Command
 {
@@ -24,7 +25,11 @@ class SendNamesCommand extends Command
 
     public function handle(ParseDateNames $names)
     {
-        $this->bot->sendMessage($names->parse()[0], intval(env('TELEGRAM_CHANNEL')));
+        $this->bot->sendMessage(
+            text: $names->parse(),
+            chat_id: intval(env('TELEGRAM_CHANNEL')),
+            parse_mode: ParseMode::HTML,
+        );
         $this->bot->run();
     }
 }
