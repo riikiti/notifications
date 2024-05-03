@@ -11,7 +11,6 @@ class ParseDateNames extends ParseData
 {
     public function parse(): JsonResponse
     {
-        $this->create();
         $names = $this->crewlerParse('#bloks');
         return response()->json($names);
     }

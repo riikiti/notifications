@@ -12,7 +12,6 @@ class ParseDateBirthdays extends ParseData
 
     public function parse(): JsonResponse
     {
-        $this->create();
         $birthdatys = $this->crewlerParse('#p2>p>b>big');
         $birthdatys_date = $this->crewlerParse('#p2>p>small');
         $role = $this->crewlerParse('#p2 > p:last-of-type');

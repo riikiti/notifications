@@ -13,7 +13,6 @@ class ParseDateEvents extends ParseData
 
     public function parse(): JsonResponse
     {
-        $this->create();
         $events = $this->crewlerParse('#dv2');
         $years = $this->crewlerParse('#dv1');
         $mergedArray = [];

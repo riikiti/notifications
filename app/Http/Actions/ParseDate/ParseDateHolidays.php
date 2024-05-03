@@ -11,7 +11,6 @@ class ParseDateHolidays extends ParseData
 
     public function parse(): JsonResponse
     {
-        $this->create();
         $holidays = $this->crewlerParse('h4');
         return response()->json( $holidays );
     }
