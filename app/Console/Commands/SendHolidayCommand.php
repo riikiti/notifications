@@ -37,8 +37,8 @@ class SendHolidayCommand extends Command
                 chat_id: $this->chat,
                 caption: $record->name,
             );
-            Log::channel('telegram')->info('Отправлен пост с сообщением ' . $record->name);
             $record->delete();
+            Log::channel('telegram')->info('Отправлен пост с сообщением ' . $record->name);
             $this->bot->run();
 
         }
