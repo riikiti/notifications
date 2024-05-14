@@ -23,8 +23,14 @@ class SendNamesCommand extends Command
         $this->chat = intval(env('TELEGRAM_CHANNEL'));
     }
 
-    public function handle(ParseDateNames $names)
+    public function handle()
     {
+        $names = new ParseDateNames(
+            env(
+                'PARSE_DATE_HOLIDAYS',
+                'https://kakoyprazdnik.com/'
+            )
+        );
         $this->bot->sendMessage(
             text: $names->parse(),
             chat_id: intval(env('TELEGRAM_CHANNEL')),

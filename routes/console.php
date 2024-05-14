@@ -11,6 +11,7 @@ Artisan::command('inspire', function () {
 Schedule::command('app:send-holiday')->everyFiveMinutes();
 Schedule::command('app:clear-storage-command')->dailyAt('6:00');
 Schedule::command('app:parse-all-holidays')->dailyAt('6:00');
+Schedule::command('app:send-horoscope-command')->dailyAt('10:00');
 Schedule::command('app:send-names-command')->dailyAt('16:00');
 Schedule::command('app:send-birthdays-command')->dailyAt('17:00');
 Schedule::command('app:send-events-command')->dailyAt('18:00');

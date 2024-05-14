@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Actions\ParseDate\ParseDateBirthdays;
 use App\Http\Actions\ParseDate\ParseDateHolidays;
 use Illuminate\Console\Command;
 
@@ -24,8 +25,14 @@ class ParseAllHolidaysCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(ParseDateHolidays $holidays)
+    public function handle()
     {
+        $holidays = new ParseDateBirthdays(
+            env(
+                'PARSE_DATE_HOLIDAYS',
+                'https://kakoyprazdnik.com/'
+            )
+        );
         $holidays->parse();
     }
 }

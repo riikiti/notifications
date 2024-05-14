@@ -2,17 +2,16 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Actions\ParseDate\ParseDateEvents;
-use App\Http\Actions\ParseDate\ParseDateNames;
+use App\Http\Actions\ParseDate\ParseDataHoroscope;
 use Illuminate\Console\Command;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 
-class SendEventsCommand extends Command
+class SendHoroscopeCommand extends Command
 {
     public Nutgram $bot;
     public int $chat;
-    protected $signature = 'app:send-events-command';
+    protected $signature = 'app:send-horoscope-command';
 
 
     protected $description = 'Command description';
@@ -26,14 +25,14 @@ class SendEventsCommand extends Command
 
     public function handle()
     {
-        $names = new ParseDateEvents(
+        $dataHoroscope = new ParseDataHoroscope(
             env(
-                'PARSE_DATE_HOLIDAYS',
-                'https://kakoyprazdnik.com/'
+                'PARSE_DATE_HOROSCOPE',
+                'https://retrofm.ru/index.php?go=goroskop'
             )
         );
         $this->bot->sendMessage(
-            text: $names->parse(),
+            text: $dataHoroscope->parse(),
             chat_id: intval(env('TELEGRAM_CHANNEL')),
             parse_mode: ParseMode::HTML,
         );
