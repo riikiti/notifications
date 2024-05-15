@@ -27,7 +27,7 @@ class ParseAllHolidaysCommand extends Command
      */
     public function handle()
     {
-        $holidays = new ParseDateBirthdays(
+        $holidays = new ParseDateHolidays(
             env(
                 'PARSE_DATE_HOLIDAYS',
                 'https://kakoyprazdnik.com/'
