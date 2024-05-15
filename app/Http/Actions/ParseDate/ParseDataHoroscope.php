@@ -12,7 +12,6 @@ class ParseDataHoroscope extends ParseData
         for ($i = 0; $i < count($body); $i++) {
             $message .= "- <b>$body[$i]</b> \n ";
         }
-        dd($message);
         return $message;
     }
 
