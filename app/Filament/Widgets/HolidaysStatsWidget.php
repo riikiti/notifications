@@ -8,6 +8,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class HolidaysStatsWidget extends BaseWidget
 {
+    //todo сделать виджет для донатов и статистику
     protected function getStats(): array
     {
         return [
