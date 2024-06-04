@@ -18,6 +18,7 @@ jobs:
           with:
             host: '95.163.229.122'
             username: 'root'
+            password: ${{ secrets.SERVERS_KEY }}
             key: ${{ secrets.KEY }}
             script: |
               cd ~/../var/www/notifications
