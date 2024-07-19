@@ -28,7 +28,7 @@ class SendHolidayCommand extends Command
 
     public function handle(GenerateImageAction $action)
     {
-        $records = Holidays::where('publish_in', '<=', now())->get();
+        $records = Holidays::whereDate('publish_in', Carbon::today())->where('publish_in', '<=', now())->get();
         foreach ($records as $record) {
             $filePath = storage_path('app/public/' . $action->generateImage($record->name));
             $photo = fopen($filePath, 'r+');
