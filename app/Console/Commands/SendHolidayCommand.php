@@ -39,8 +39,6 @@ class SendHolidayCommand extends Command
             );
             $record->delete();
             Log::channel('telegram')->info('Отправлен пост с сообщением ' . $record->name);
-            $this->bot->run();
-
         }
 
         return Command::SUCCESS;
